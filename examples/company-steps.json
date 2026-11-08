@@ -1,0 +1,9 @@
+{
+  "steps": [
+    {
+      "tool_sid": "in:tool.in_tl_YOURTOOLSID1",
+      "params": { "domain": "{{company.domain}}", "name": "{{company.name}}" }
+    }
+  ],
+  "stop_on_first": true
+}

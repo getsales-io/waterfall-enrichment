@@ -1,0 +1,29 @@
+# On each push and pull request, for Node 20, 22 and 24: install from the
+# lockfile with install scripts off, typecheck, run the offline suite (every
+# API answer is mocked) and list what the package would ship. The job reads
+# no secrets, its token can only read the repository, and it publishes nothing.
+name: ci
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci --ignore-scripts
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm pack --dry-run

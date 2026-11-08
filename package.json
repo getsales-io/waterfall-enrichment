@@ -1,0 +1,54 @@
+{
+  "name": "@getsales/waterfall-enrichment",
+  "version": "1.0.0",
+  "description": "Waterfall enrichment for a CSV of people or companies, run through a GetSales table: one import, an ordered provider chain, one run with a credit budget, and the enriched CSV back.",
+  "keywords": [
+    "waterfall-enrichment",
+    "data-enrichment",
+    "lead-enrichment",
+    "email-finder",
+    "csv",
+    "cli",
+    "getsales"
+  ],
+  "homepage": "https://getsales.io/waterfall-enrichment/",
+  "bugs": {
+    "url": "https://github.com/getsales-io/waterfall-enrichment/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getsales-io/waterfall-enrichment.git"
+  },
+  "license": "MIT",
+  "author": "GetSales (https://getsales.io)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "waterfall-enrichment": "dist/bin.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json --noEmit",
+    "test": "tsc -p tsconfig.test.json && node --test build-test/test/*.test.js",
+    "clean": "rm -rf dist build-test",
+    "prepack": "npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.0",
+    "typescript": "5.9.3"
+  }
+}

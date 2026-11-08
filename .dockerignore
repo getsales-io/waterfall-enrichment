@@ -1,0 +1,8 @@
+node_modules
+dist
+build-test
+.git
+.github
+*.tgz
+*.enriched.csv
+.DS_Store
